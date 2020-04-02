@@ -14,6 +14,7 @@
 
 # The binary to build (just the basename).
 BIN := gonode
+BIN_CSCDB := cscdb
 
 # Where to push the docker image.
 REGISTRY ?= tgeof
