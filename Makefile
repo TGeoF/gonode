@@ -42,7 +42,7 @@ BASEIMAGE ?= gcr.io/distroless/static
 IMAGE := $(REGISTRY)/$(BIN)
 TAG := $(VERSION)__$(OS)_$(ARCH)
 
-BUILD_IMAGE ?= golang:1.13-alpine
+BUILD_IMAGE ?= golang:1.14.1-buster
 
 # If you want to build all binaries, see the 'all-build' rule.
 # If you want to build all containers, see the 'all-container' rule.
@@ -105,6 +105,7 @@ $(OUTBIN): .go/$(OUTBIN).stamp
 	    -v $$(pwd)/.go/cache:/.cache                            \
 	    --env HTTP_PROXY=$(HTTP_PROXY)                          \
 	    --env HTTPS_PROXY=$(HTTPS_PROXY)                        \
+	    --env CGO_ENABLED=1 			                        \
 	    $(BUILD_IMAGE)                                          \
 	    /bin/sh -c "                                            \
 	        ARCH=$(ARCH)                                        \
